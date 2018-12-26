@@ -37,7 +37,7 @@ int main (){
     bool axis = true;
     bool scale = true;
     bool grid = true;
-    string func = "none";
+    string func = "trivial";
     int angle = 90;
     cout<<"The complexe rotation is : "<<angle<<endl;
 
@@ -51,7 +51,7 @@ int main (){
         window.clear(sf::Color::White);
         c.drawXAxis(window, "x", units, axis, scale, grid);
         c.drawYAxis(window, "y", units, axis, scale, grid);
-        c.drawHelper(window, " (E) : exponential \n (S) : sine \n (C) : cosine \n (L) : logarithm \n (Return) no function \n \n (T/Y) : axis(on/off) \n (G/H) : scale(on/off) \n (B/N) : grid(on/off) \n \n (O) : return to order 0 \n (Up) : order up \n (Down) : order down ",windowSize[0]+10 ,10);
+        c.drawHelper(window, " (E) : exponential \n (S) : sine \n (C) : cosine \n (L) : logarithm \n (Z) : trivial \n \n (T/Y) : axis(on/off) \n (G/H) : scale(on/off) \n (B/N) : grid(on/off) \n \n (O) : return to order 0 \n (Up) : order up \n (Down) : order down ",windowSize[0]+10 ,10);
 
         c.drawFunction(window, func, sf::Color::Red);
         c.drawTaylor(window, func, order, sf::Color::Blue);
@@ -80,8 +80,8 @@ int main (){
                     grid = true;
                 if (event.key.code == sf::Keyboard::N)
                     grid = false;
-                if (event.key.code == sf::Keyboard::Return)
-                    func = "none";
+                if (event.key.code == sf::Keyboard::Z)
+                    func = "trivial";
                 if (event.key.code == sf::Keyboard::E)
                     func = "exp";
                 if (event.key.code == sf::Keyboard::C)

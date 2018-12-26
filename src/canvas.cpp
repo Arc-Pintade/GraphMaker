@@ -155,9 +155,13 @@ void Canvas::drawTaylorOrdering(sf::RenderWindow& window, int n){
 
 
 void Canvas::drawHelper(sf::RenderWindow& window, std::string name, int xPosition, int yPosition){
+    sf::Color colorBack(150,0,0,50);
     sf::RectangleShape rect(sf::Vector2f(5,ySize));
+    sf::RectangleShape back(sf::Vector2f(400, ySize));
     rect.setPosition(sf::Vector2f(xSize,0));
     rect.setFillColor(sf::Color::Black);
+    back.setPosition(sf::Vector2f(xSize,0));
+    back.setFillColor(colorBack);
     sf::Font font;
     if (!font.loadFromFile("fonts/texgyredejavu-math.otf"))
         std::cout<<"error with the font file"<<std::endl;
@@ -169,6 +173,7 @@ void Canvas::drawHelper(sf::RenderWindow& window, std::string name, int xPositio
     text.setString(name);
     text.setPosition(sf::Vector2f(xPosition,yPosition));
     window.draw(rect);
+    window.draw(back);
     window.draw(text);
 }
 
@@ -196,7 +201,7 @@ void Canvas::drawFunction(sf::RenderWindow& window, std::string function, sf::Co
     double yCanvas[prec]{0};
     for(int i=0; i<prec; i++){
         xCanvas[i] = 5 + i*(xSize-10)*(1./prec);
-        if(function == "none")
+        if(function == "trivial")
             yCanvas[i] = ySize/2.;
         else if(function == "exp")
             yCanvas[i] = ySize/2. - exp(-xUnits + i*xUnits*(2./prec))*((ySize)/(2.*yUnits));
@@ -232,7 +237,7 @@ void Canvas::drawTaylor(sf::RenderWindow& window, std::string function, int orde
     for(int i=0; i<prec; i++){
         xCanvas[i] = 5 + i*(xSize-10)*(1./prec);
         yCanvas[i] = ySize/2.;
-        if(function == "none")
+        if(function == "trivial")
             for(int j=0; j<order; j++)
                 yCanvas[i] -= 0;
         else if(function == "exp")
