@@ -124,6 +124,7 @@ void Canvas::drawYAxis(sf::RenderWindow& window, std::string name, int yMax, boo
 }
 
 void Canvas::drawTaylorOrdering(sf::RenderWindow& window, int n){
+    sf::RectangleShape back(sf::Vector2f(400,41));
     sf::Font font;
     if (!font.loadFromFile("fonts/texgyredejavu-math.otf"))
         std::cout<<"error with the font file"<<std::endl;
@@ -149,10 +150,10 @@ void Canvas::drawTaylorOrdering(sf::RenderWindow& window, int n){
         warning.setPosition(sf::Vector2f(xSize/4,ySize/4));
         warning.rotate(30);
     }
+    window.draw(back);
     window.draw(text);
     window.draw(warning);
 }
-
 
 void Canvas::drawHelper(sf::RenderWindow& window, std::string name, int xPosition, int yPosition){
     sf::Color colorBack(150,0,0,50);
